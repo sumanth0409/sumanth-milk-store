@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumanth Milk Store</title>
+
+  <!-- Later: Add your Microsoft UET / GTM code here -->
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #222;
+    }
+
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .product {
+      background: white;
+      width: 250px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .product h2 {
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 22px;
+      color: green;
+      font-weight: bold;
+    }
+
+    button {
+      background: #0067b8;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background: #005a9e;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 20px;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🥛 Sumanth Milk Store</h1>
+  <p>Test website for Microsoft Advertising CAPI</p>
+
+  <div class="products">
+
+    <div class="product">
+      <h2>Milk 1 Litre</h2>
+      <p>Fresh Milk</p>
+      <p class="price">₹200</p>
+
+      <button onclick="purchase('Milk 1 Litre', 200)">
+        Buy Now
+      </button>
+    </div>
+
+    <div class="product">
+      <h2>Milk 2 Litres</h2>
+      <p>Fresh Milk</p>
+      <p class="price">₹300</p>
+
+      <button onclick="purchase('Milk 2 Litres', 300)">
+        Buy Now
+      </button>
+    </div>
+
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    function purchase(productName, price) {
+
+      document.getElementById("message").innerHTML =
+        "✅ Purchase successful: " +
+        productName +
+        " - ₹" +
+        price;
+
+      // Make purchase information available for GTM.
+      window.dataLayer = window.dataLayer || [];
+
+      window.dataLayer.push({
+        event: "purchase",
+        product_name: productName,
+        value: price,
+        currency: "INR",
+        event_id: crypto.randomUUID()
+      });
+
+      console.log("Purchase event sent to dataLayer:", {
+        product_name: productName,
+        value: price,
+        currency: "INR"
+      });
+    }
+  </script>
+
+</body>
+</html>
